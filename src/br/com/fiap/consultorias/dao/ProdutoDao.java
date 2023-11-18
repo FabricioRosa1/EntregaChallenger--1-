@@ -5,7 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import br.com.fiap.consultorias.model.Pagamento;
+import br.com.fiap.consultorias.model.PagamentoModel;
 
 public class ProdutoDao{
 	
@@ -15,7 +15,7 @@ public class ProdutoDao{
 		this.conexao = conexao;
 	}
 
-	public void gravar (Pagamento consultorias) {
+	public void gravar (PagamentoModel consultorias) {
 		
 		String sql = "INSERT INTO Consultorias (IDConsultoria, IDCliente, IDFuncionario, IDJogo, DuracaoEmHoras, Preco)"
 				+ "VALUES (?, ?, ?, ?, ?, ?)";		
