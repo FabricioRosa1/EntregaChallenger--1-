@@ -1,0 +1,8 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<OSDM_Design class="oracle.dbtools.crest.model.design.Design" name="Modelagem Logica e Relacional" id="CE3D735F-E2FB-E1F4-61D3-2BDFF90BFF3C" version="3.5">
+<createdBy>engfa</createdBy>
+<createdTime>2023-10-01 23:25:10 UTC</createdTime>
+<ownerDesignName>Modelagem Logica e Relacional</ownerDesignName>
+<capitalNames>false</capitalNames>
+<designId>CE3D735F-E2FB-E1F4-61D3-2BDFF90BFF3C</designId>
+</OSDM_Design>
