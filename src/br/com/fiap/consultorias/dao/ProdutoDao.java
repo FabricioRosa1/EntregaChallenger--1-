@@ -3,9 +3,11 @@ package br.com.fiap.consultorias.dao;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import br.com.fiap.consultorias.model.PagamentoModel;
+import br.com.fiap.consultorias.model.ProdutoModel;
 
 public class ProdutoDao{
 	
@@ -15,46 +17,117 @@ public class ProdutoDao{
 		this.conexao = conexao;
 	}
 
-	public void gravar (PagamentoModel consultorias) {
+	public void cadastrarProduto (ProdutoModel produto) {
 		
-		String sql = "INSERT INTO Consultorias (IDConsultoria, IDCliente, IDFuncionario, IDJogo, DuracaoEmHoras, Preco)"
-				+ "VALUES (?, ?, ?, ?, ?, ?)";		
+		String sql = "INSERT INTO TB_PRODUTOS (ID_PRODUTO, DS_TITULO, DS_DESCRICAO, VL_PRECO, TG_INATIVO, DS_URLIMAGEM )"
+				+ "VALUES (SQ_USUARIO.nextval, ?, ?, ?, ?, ?)";		
 		try {
-			PreparedStatement ps_Consultoria = conexao.prepareStatement(sql);
+			PreparedStatement ps_Produto = conexao.prepareStatement(sql);
+		
+			ps_Produto.setString(2, produto.getTituloProduto());
+			ps_Produto.setString(3, produto.getDescricaoProduto());
+			ps_Produto.setDouble(4, produto.getVlPreco());
+			ps_Produto.setInt(5, produto.getTgInativo());
+			ps_Produto.setString(6, produto.getImagemProduto());
 			
-			ps_Consultoria.setInt(1, consultorias.getIdconsultoria());
-			Date data = Date.valueOf(consultorias.getData_consulta());
-			ps_Consultoria.setDate(2, data);
-			ps_Consultoria.setInt(2, consultorias.getIdcliente());
-			ps_Consultoria.setInt(3, consultorias.getIdfuncionario());
-			ps_Consultoria.setInt(4, consultorias.getIdjogo());
-			ps_Consultoria.setDouble(5, consultorias.getDuracao_horas());
-			ps_Consultoria.setDouble(6, consultorias.getPreco());
+			ps_Produto.execute();
 			
-			ps_Consultoria.execute();
-			
-			ps_Consultoria.close();
+			ps_Produto.close();
 			
 			conexao.close();
 			
-			System.out.println("Consultoria cadastrada com sucesso");
+			System.out.println("Produto cadastrada com sucesso");
 			
 			
 		} catch (SQLException e) {
-			System.out.println("Erro ao cadastrar informações no banco");
+			System.out.println("Erro ao cadastrar informações referentes ao produto");
 			e.printStackTrace();
 		}
 		
 	}
 
-	//public void excluir (Consultorias consultorias) {
-		
-		
-	//}
+	public void excluirProduto (int produtoId) {
+		String sql = "DELETE FROM TB_PRODUTOS WHERE ID_PRODUTO = ?";		
+try {
+	PreparedStatement ps_Produto = conexao.prepareStatement(sql);
+
+	ps_Produto.setInt(1, produtoId);
 	
-	//public void atualizar (Consultorias consultorias) {
-		
+	ps_Produto.execute();
+	
+	ps_Produto.close();
+	
+	conexao.close();
+	
+	System.out.println("Produto cadastrada com sucesso");
+	
+	
+} catch (SQLException e) {
+	System.out.println("Erro ao cadastrar informações referentes ao produto");
+	e.printStackTrace();
+}
+
 		
 	}
+	
+	public void atualizarProduto (ProdutoModel produto) {
+		
+		String sql = "UPDATE TB_PRODUTOS SET  DS_TITULO = ?, DS_DESCRICAO = ?, VL_PRECO = ? , TG_INATIVO = ?, DS_URLIMAGEM = ? WHERE ID_PRODUTO = ?";		
+try {
+	PreparedStatement ps_Produto = conexao.prepareStatement(sql);
 
-//}
+	ps_Produto.setString(1, produto.getTituloProduto());
+	ps_Produto.setString(2, produto.getDescricaoProduto());
+	ps_Produto.setDouble(3, produto.getVlPreco());
+	ps_Produto.setInt(4, produto.getTgInativo());
+	ps_Produto.setString(5, produto.getImagemProduto());
+	ps_Produto.setInt(6, produto.getIdProduto());
+
+	ps_Produto.execute();
+	
+	ps_Produto.close();
+	
+	conexao.close();
+	
+	System.out.println("Produto cadastrada com sucesso");
+	
+	
+} catch (SQLException e) {
+	System.out.println("Erro ao cadastrar informações referentes ao produto");
+	e.printStackTrace();
+}
+
+	}
+
+	public void listarTodosProdutos (ProdutoModel produto) {
+		String sql = "SELECT * FROM TB_PRODUTOS";		
+try {
+	PreparedStatement ps_Produto = conexao.prepareStatement(sql);
+
+	ResultSet res = ps_Produto.executeQuery();
+			
+	if (res.next()) {
+	ps_Produto.setString(2, produto.getTituloProduto());
+	ps_Produto.setString(3, produto.getDescricaoProduto());
+	ps_Produto.setDouble(4, produto.getVlPreco());
+	ps_Produto.setInt(5, produto.getTgInativo());
+	ps_Produto.setString(6, produto.getImagemProduto());
+	}
+	
+	ps_Produto.execute();
+	
+	ps_Produto.close();
+	
+	conexao.close();
+	
+	System.out.println("Produto cadastrada com sucesso");
+	
+	
+} catch (SQLException e) {
+	System.out.println("Erro ao cadastrar informações referentes ao produto");
+	e.printStackTrace();
+}
+
+	}
+
+}

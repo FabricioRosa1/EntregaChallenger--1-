@@ -3,8 +3,15 @@ package br.com.fiap.consultorias.model;
 import java.time.LocalDate;
 
 public class PagamentoModel {
+	private int idTransacao;
+	public int getIdTransacao() {
+		return idTransacao;
+	}
+	public void setIdTransacao(int idTransacao) {
+		this.idTransacao = idTransacao;
+	}
 	private String TitularCartao;
-	private long  numeroCartao;
+	private String  numeroCartao;
 	private LocalDate validadeCartao;
 	private int cvv;
 	private int qtdParcelas;
@@ -15,10 +22,10 @@ public class PagamentoModel {
 	public void setTitularCartao(String titularCartao) {
 		TitularCartao = titularCartao;
 	}
-	public long getNumeroCartao() {
+	public String getNumeroCartao() {
 		return numeroCartao;
 	}
-	public void setNumeroCartao(long numeroCartao) {
+	public void setNumeroCartao(String numeroCartao) {
 		this.numeroCartao = numeroCartao;
 	}
 	public LocalDate getValidadeCartao() {

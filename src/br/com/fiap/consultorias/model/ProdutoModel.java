@@ -5,6 +5,21 @@ public class ProdutoModel {
     private String imagemProduto;
     private String tituloProduto;
     private String descricaoProduto;
+    private double vlPreco;
+    private int tgInativo;
+
+    public int getTgInativo() {
+        return tgInativo;
+    }
+    public void setTgInativo(int tgInativo) {
+        this.tgInativo = tgInativo;
+    }
+    public double getVlPreco() {
+        return vlPreco;
+    }
+    public void setVlPreco(double vlPreco) {
+        this.vlPreco = vlPreco;
+    }
     public int getIdProduto() {
         return idProduto;
     }
